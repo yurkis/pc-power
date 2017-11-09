@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>WidgetBattery</class>
+ <widget class="QWidget" name="WidgetBattery">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>239</width>
+    <height>78</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item>
+      <widget class="QLabel" name="battIcon">
+       <property name="minimumSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap resource="../pc-power.qrc">:/images/battery.png</pixmap>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QProgressBar" name="capacity">
+       <property name="styleSheet">
+        <string notr="true">/*QProgressBar {
+border: 1px solid black;
+text-align: top;
+padding: 1px;
+border-bottom-right-radius: 7px;
+border-bottom-left-radius: 7px;
+border-top-right-radius: 7px;
+border-top-left-radius: 7px;
+background: QLinearGradient( x1: 0, y1: 0, x2: 1, y2: 0,
+stop: 0 #fff,
+stop: 0.4999 #eee,
+stop: 0.5 #ddd,
+stop: 1 #eee );
+width: 15px;
+height: 10px;
+}
+
+QProgressBar::chunk {
+background: QLinearGradient( x1: 0, y1: 0, x2: 1, y2: 0,
+stop: 0 #78d,
+stop: 0.4999 #46a,
+stop: 0.5 #45a,
+stop: 1 #238 );
+border-bottom-right-radius: 7px;
+border-bottom-left-radius: 7px;
+border-top-right-radius: 7px;
+border-top-left-radius: 7px;
+border: 1px solid black;
+}*/</string>
+       </property>
+       <property name="value">
+        <number>24</number>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLabel" name="statusText">
+       <property name="text">
+        <string>Aprox. time:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_3">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>13</width>
+         <height>17</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="../pc-power.qrc"/>
+ </resources>
+ <connections/>
+</ui>
