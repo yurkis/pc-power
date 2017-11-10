@@ -33,11 +33,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 #define _str_constant static const char* const
 
-_str_constant DEF_PROFILES_PATH = "/usr/local/share/pcbsd/pwrd/";
+_str_constant DEF_PROFILES_PATH = "/usr/local/share/pwrd/";
 static const int DEF_POLLING_BATTERY_TIME = 1000;
 _str_constant DEF_DEVD_PIPE = "/var/run/devd.pipe";
 
 _str_constant CONF_FIELD_PIPE_NAME = "pipe";
+_str_constant CONF_FIELD_EVENTS_PIPE_NAME = "events_pipe";
 _str_constant CONF_FIELD_DEVD_PIPE = "devd_pipe";
 _str_constant CONF_FIELD_PROFILES_PATH = "profiles_path";
 _str_constant CONF_FIELD_BATTER_POLLING = "battery_polling";
@@ -62,8 +63,13 @@ _PWRServerSettings::_PWRServerSettings()
 {
     pipeName = DEF_PWRD_PIPE_NAME;
     devdPipeName = DEF_DEVD_PIPE;
+    eventsPipeName = DEF_PWRD_EVENTS_PIPE_NAME;
     profilesPath = DEF_PROFILES_PATH;
     battPollingTime = DEF_POLLING_BATTERY_TIME;
+    lowBatteryCapacity = DEF_FIELD_LOW_BATTERY_RATE;
+    usingIntel_backlight = false;
+    allowProfileChange = true;
+    allowSettingsChange = true;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -78,7 +84,7 @@ bool _PWRServerSettings::load(QString file)
     Reader.setIniCodec("UTF-8");
 
     pipeName = Reader.value(CONF_FIELD_PIPE_NAME, DEF_PWRD_PIPE_NAME).toString();
-    eventsPipeName = Reader.value(CONF_FIELD_PIPE_NAME, DEF_PWRD_EVENTS_PIPE_NAME).toString();
+    eventsPipeName = Reader.value(CONF_FIELD_EVENTS_PIPE_NAME, DEF_PWRD_EVENTS_PIPE_NAME).toString();
     devdPipeName = Reader.value(CONF_FIELD_DEVD_PIPE, DEF_DEVD_PIPE).toString();
     profilesPath = Reader.value(CONF_FIELD_PROFILES_PATH, DEF_PROFILES_PATH).toString();
     battPollingTime =Reader.value(CONF_FIELD_BATTER_POLLING, DEF_POLLING_BATTERY_TIME).toInt();
@@ -106,7 +112,8 @@ bool _PWRServerSettings::save(QString file)
     Writer.beginGroup("general");
 
     Writer.setValue(CONF_FIELD_PIPE_NAME, pipeName);
-    Writer.setValue(CONF_FIELD_PIPE_NAME, eventsPipeName);
+    Writer.setValue(CONF_FIELD_PIPE_NAME, pipeName);
+    Writer.setValue(CONF_FIELD_EVENTS_PIPE_NAME, eventsPipeName);
     Writer.setValue(CONF_FIELD_DEVD_PIPE, devdPipeName);
     Writer.setValue(CONF_FIELD_PROFILES_PATH, profilesPath);
     Writer.setValue(CONF_FIELD_BATTER_POLLING, battPollingTime);

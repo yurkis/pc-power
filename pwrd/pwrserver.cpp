@@ -471,6 +471,7 @@ bool PwrServer::start(QStringList args)
         qDebug() << "A previous instance of the pc-pwrd server is still running! Exiting...";
         exit(1);
     }
+    server->setSocketOptions(server->socketOptions() | QLocalServer::WorldAccessOption);
     if( server->listen(settings.pipeName) )
     {
         QFile::setPermissions(settings.pipeName,
@@ -492,6 +493,7 @@ bool PwrServer::start(QStringList args)
         qDebug() << "A previous instance of the pc-pwrd server is still running! Exiting...";
         exit(1);
     }
+    eventServer->setSocketOptions(QLocalServer::WorldAccessOption);
     if( eventServer->listen(settings.eventsPipeName) )
     {
         QFile::setPermissions(settings.eventsPipeName,

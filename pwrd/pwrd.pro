@@ -45,13 +45,13 @@ LIBS += -L/usr/local/lib
 target.path=/usr/local/sbin
 
 cleanprofiles.path=/usr/local/share/pcbsd/pwrd/
-cleanprofiles.extra=rm -rf $(INSTALL_ROOT)/usr/local/share/pcbsd/pwrd/default
+cleanprofiles.extra=rm -rf $(INSTALL_ROOT)/usr/local/share/pwrd/default
 
 mkdirconf.path=/usr/local/share/pcbsd/pwrd/
-mkdirconf.extra=mkdir -p $(INSTALL_ROOT)/usr/local/share/pcbsd/pwrd/
+mkdirconf.extra=mkdir -p $(INSTALL_ROOT)/usr/local/share/pwrd/
 
-cpconfig.path=/usr/local/share/pcbsd/pwrd/
-cpconfig.extra=tar cvf - -C conf . 2>/dev/null | tar xvf - -C $(INSTALL_ROOT)/usr/local/share/pcbsd/pwrd/ 2>/dev/null
+cpconfig.path=/usr/local/share/pwrd/
+cpconfig.extra=tar cvf - -C conf . 2>/dev/null | tar xvf - -C $(INSTALL_ROOT)/usr/local/share/pwrd/ 2>/dev/null
 #&& chmod -R 0555 $(INSTALL_ROOT)/usr/local/share/pcbsd/pc-power/ 2>/dev/null
 
 rcd.path=/usr/local/etc/rc.d
