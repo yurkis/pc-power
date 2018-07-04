@@ -67,6 +67,7 @@ QJsonObject PwrServer::parseCommand(QString line)
       if (root.find(MSGTYPE_COMMAND) != root.end())
       {
           qDebug()<<"COMMAND:"<<root[MSGTYPE_COMMAND];
+          //qDebug()<<root;
 
           if (root[MSGTYPE_COMMAND] == COMMAND_HWINFO)
           {

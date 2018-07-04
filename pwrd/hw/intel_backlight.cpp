@@ -85,5 +85,5 @@ bool hasIntelBacklight()
     }
     QStringList out = intel_backlight();
     if (out.size()<1) return false;
-    return (out[0].startsWith("current backlight value:"));    
+    return (out[0].toLower().startsWith("current backlight value:"));
 }
