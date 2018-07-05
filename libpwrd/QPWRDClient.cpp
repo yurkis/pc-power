@@ -78,6 +78,7 @@ bool QPWRDClient::connect(QString pipe)
     d->sock.connectToServer(pipe);
     if (!d->sock.waitForConnected())
     {
+        qCritical()<<d->sock.errorString();
         return false;
     }
     return true;

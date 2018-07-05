@@ -2,7 +2,7 @@
 [Desktop Entry]
 Comment[en_US]=
 Comment=
-Exec=pc-power
+Exec=dpower
 
 Icon=/usr/local/share/pcbsd/icons/pc-power.png
 StartupNotify=true
@@ -10,4 +10,4 @@ Terminal=false
 TerminalOptions=
 Type=Application
 Categories=System;Settings;
-Name=PC-BSD Power management
+Name=Desktop power management
