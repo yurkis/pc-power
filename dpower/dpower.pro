@@ -57,15 +57,15 @@ INCLUDEPATH += ../common/include ../libpwrd  /usr/local/include/pwrd
 LIBS += -L/usr/local/lib
 
 RESOURCES += \
-    pc-power.qrc
+    dpower.qrc
 
 target.path=/usr/local/bin/
 
 desktop.path=/usr/local/share/applications/
-desktop.files=pc-power.desktop
+desktop.files=dpower.desktop
 
 appicon.path=/usr/local/share/pcbsd/icons/
-appicon.files=pc-power.png
+appicon.files=dpower.png
 
 INSTALLS += target appicon desktop
 
