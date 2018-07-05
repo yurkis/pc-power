@@ -1,7 +1,7 @@
 [general]
 #pipe=/var/run/pwrd.pipe
 #devd_pipe=/var/run/devd.pipe
-#profiles_path=/usr/local/share/pcbsd/pwrd/
+#profiles_path=/usr/local/share/pwrd/
 #battery_polling=2000
 #low_battery=20
 #allow_config_change=1
