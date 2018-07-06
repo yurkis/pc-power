@@ -537,6 +537,7 @@ QJsonObject PwrServer::oncmdUpdateProfile(QJsonObject req)
 ///////////////////////////////////////////////////////////////////////////////
 QJsonObject PwrServer::oncmdRemoveProfile(QJsonObject req)
 {
+    Q_UNUSED(req);
     return RESULT_SUCCESS();
 }
 

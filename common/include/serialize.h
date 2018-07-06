@@ -26,6 +26,8 @@ public:
     QString toJSONString();
     virtual QJsonObject toJSON();
 
+    virtual ~JSONSerializer(){}
+
 }JSONSerializer;
 
 #define JSON_STRUCT(name)\

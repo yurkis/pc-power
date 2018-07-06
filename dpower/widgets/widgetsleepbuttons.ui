@@ -23,7 +23,7 @@
       <string/>
      </property>
      <property name="icon">
-      <iconset resource="../pc-power.qrc">
+      <iconset resource="../dpower.qrc">
        <normaloff>:/images/system-suspend-hibernate.png</normaloff>:/images/system-suspend-hibernate.png</iconset>
      </property>
      <property name="iconSize">
@@ -46,7 +46,7 @@
       <string/>
      </property>
      <property name="icon">
-      <iconset resource="../pc-power.qrc">
+      <iconset resource="../dpower.qrc">
        <normaloff>:/images/system-suspend.png</normaloff>:/images/system-suspend.png</iconset>
      </property>
      <property name="iconSize">
@@ -63,7 +63,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="../pc-power.qrc"/>
+  <include location="../dpower.qrc"/>
  </resources>
  <connections/>
 </ui>

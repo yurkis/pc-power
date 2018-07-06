@@ -7,5 +7,9 @@ SUBDIRS+= pwrd pwrcli dpower
 #binary.depends = library
 
 RESOURCES += \
+    dpower/pc-power.qrc \
+    dpower/pc-power.qrc \
+    dpower/pc-power.qrc \
+    dpower/pc-power.qrc \
     dpower/pc-power.qrc
 

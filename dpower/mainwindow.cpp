@@ -181,7 +181,7 @@ void MainWindow::setupTray()
 
     trayMenu = new QMenu(this);
 
-    trayIcon->setContextMenu(trayMenu);
+    //trayIcon->setContextMenu(trayMenu);
 
     QAction* show_act = new  QAction(trayMenu);
     show_act->setText(tr("Show main window"));
@@ -236,10 +236,12 @@ void MainWindow::setupTray()
         trayMenu->addAction(bl_action);
     }
 
-     trayIcon->show();
+    //connect(trayMenu, SIGNAL(aboutToShow()), this, SLOT())
+    //trayIcon->setContextMenu(trayMenu);
+    trayIcon->show();
 
 
-     connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(trayActivated()));
+    connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(trayActivated()));
 }
 
 void MainWindow::refreshProfilesMenu()

@@ -34,7 +34,7 @@
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="../pc-power.qrc">:/images/battery.png</pixmap>
+        <pixmap resource="../dpower.qrc">:/images/battery.png</pixmap>
        </property>
        <property name="scaledContents">
         <bool>true</bool>
@@ -108,7 +108,7 @@ border: 1px solid black;
   </layout>
  </widget>
  <resources>
-  <include location="../pc-power.qrc"/>
+  <include location="../dpower.qrc"/>
  </resources>
  <connections/>
 </ui>
