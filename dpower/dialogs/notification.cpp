@@ -4,6 +4,7 @@
 #include <QDesktopWidget>
 #include <QPixmap>
 #include <QDebug>
+#include <QStyle>
 
 Notification::Notification(QWidget *parent) :
     QDialog(parent),
