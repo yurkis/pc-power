@@ -8,6 +8,13 @@ CONFIG += console c++11
 TEMPLATE = app
 
 SOURCES += main.cpp \
+    hw/Battery/acpibattery.cpp \
+    hw/Battery/battery.cpp \
+    hw/Battery/batteryhw.cpp \
+    hw/Battery/fakebattery.cpp \
+    hw/backlight/backlight.cpp \
+    hw/backlight/backlighthw.cpp \
+    hw/device.cpp \
     pwrserver.cpp \
     sysctlutils.cpp \
     hw/battery.cpp \
@@ -23,6 +30,13 @@ SOURCES += main.cpp \
     hw/fakebatt.cpp
 
 HEADERS += \
+    hw/Battery/acpibattery.h \
+    hw/Battery/battery.h \
+    hw/Battery/batteryhw.h \
+    hw/Battery/fakebattery.h \
+    hw/backlight/backlight.h \
+    hw/backlight/backlighthw.h \
+    hw/device.h \
     pwrserver.h \
     sysctlutils.h \
     hw/battery.h \
