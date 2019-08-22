@@ -1,9 +1,9 @@
 #ifndef FAKEBATTERY_H
 #define FAKEBATTERY_H
 
-#include "batteryhw.h"
+#include "../batterydev.h"
 
-class FakeBattery: public BatteryHardware
+class FakeBattery: public BatteryDevice
 {
 public:
     FakeBattery(unsigned int idx);

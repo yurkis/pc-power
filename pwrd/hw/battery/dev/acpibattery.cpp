@@ -18,7 +18,7 @@ static const char* const ACPIDEV = "/dev/acpi";
 const int MAX_BATTS = 32;
 #endif
 
-ACPIBattery::ACPIBattery(unsigned int idx):BatteryHardware (idx)
+ACPIBattery::ACPIBattery(unsigned int idx):BatteryDevice (idx)
 {
 
 }

@@ -8,10 +8,12 @@ CONFIG += console c++11
 TEMPLATE = app
 
 SOURCES += main.cpp \
-    hw/Battery/acpibattery.cpp \
-    hw/Battery/battery.cpp \
-    hw/Battery/batteryhw.cpp \
-    hw/Battery/fakebattery.cpp \
+    ../common/src/hw/battery_json.cpp \
+    ../common/src/json_helper.cpp \
+    hw/battery/dev/acpibattery.cpp \
+    hw/battery/battery.cpp \
+    hw/battery/batterydev.cpp \
+    hw/battery/dev/fakebattery.cpp \
     hw/backlight/backlight.cpp \
     hw/backlight/backlighthw.cpp \
     hw/device.cpp \
@@ -30,10 +32,13 @@ SOURCES += main.cpp \
     hw/fakebatt.cpp
 
 HEADERS += \
-    hw/Battery/acpibattery.h \
-    hw/Battery/battery.h \
-    hw/Battery/batteryhw.h \
-    hw/Battery/fakebattery.h \
+    ../common/include/hw/battery.h \
+    ../common/include/hw/battery_json.h \
+    ../common/include/json_helper.h \
+    hw/battery/dev/acpibattery.h \
+    hw/battery/battery.h \
+    hw/battery/batterydev.h \
+    hw/battery/dev/fakebattery.h \
     hw/backlight/backlight.h \
     hw/backlight/backlighthw.h \
     hw/device.h \
@@ -51,7 +56,7 @@ HEADERS += \
     hw/sleep.h \
     pwrddebug.h
 
-INCLUDEPATH += ../common/include /usr/local/include/pwrd
+INCLUDEPATH += ../common/include /usr/local/include/pwrd ../
 
 QMAKE_LIBDIR = /usr/local/lib/qt5 /usr/local/lib
 LIBS += -L/usr/local/lib

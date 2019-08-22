@@ -1,9 +1,9 @@
 #ifndef ACPIBATTERY_H
 #define ACPIBATTERY_H
 
-#include "batteryhw.h"
+#include "../batterydev.h"
 
-class ACPIBattery:public BatteryHardware
+class ACPIBattery:public BatteryDevice
 {
 public:
     ACPIBattery(unsigned int idx);

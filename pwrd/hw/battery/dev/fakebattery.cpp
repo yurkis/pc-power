@@ -7,7 +7,7 @@ const unsigned int FAKE_COUNT = 2;
 const char* const FAKE_FILE_PREFFIX = "~/battery";
 
 
-FakeBattery::FakeBattery(unsigned int idx):BatteryHardware (idx)
+FakeBattery::FakeBattery(unsigned int idx):BatteryDevice (idx)
 {
     hwout.type="LIon";
     hwout.OEMInfo=QString("FakeBatt") + QString::number(idx);

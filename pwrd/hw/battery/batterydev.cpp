@@ -1,12 +1,12 @@
-#include "batteryhw.h"
+#include "batterydev.h"
 
-BatteryHardware::BatteryHardware(unsigned int idx)
+BatteryDevice::BatteryDevice(unsigned int idx)
 {
     MyIndex = idx;
     Check();
 }
 
-bool BatteryHardware::Check()
+bool BatteryDevice::Check()
 {
     PWRBatteryStatus st;
     if (! State(st))
@@ -21,12 +21,12 @@ bool BatteryHardware::Check()
     return ChargingWasChanged || CapacityWasChanged;
 }
 
-bool BatteryHardware::CapacityChanged()
+bool BatteryDevice::CapacityChanged()
 {
     return CapacityWasChanged;
 }
 
-bool BatteryHardware::StateChanged()
+bool BatteryDevice::StateChanged()
 {
     return ChargingWasChanged;
 }

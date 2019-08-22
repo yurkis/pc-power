@@ -2,8 +2,8 @@
 #define CBATTERYMANAGER_H
 
 #include "../device.h"
-#include "fakebattery.h"
-#include "acpibattery.h"
+#include "./dev/fakebattery.h"
+#include "./dev/acpibattery.h"
 
 #include <QObject>
 #include <QVector>
@@ -36,7 +36,7 @@ protected:
 
 
 private:
-    QVector<BatteryHardware*> batts;
+    QVector<BatteryDevice*> batts;
     bool lowBattery;
     bool ACState;
 

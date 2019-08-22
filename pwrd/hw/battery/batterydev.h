@@ -48,10 +48,10 @@ typedef struct _PWRBatteryState
     }
 }PWRBatteryStatus;
 
-class BatteryHardware
+class BatteryDevice
 {
 public:
-    BatteryHardware(unsigned int idx);
+    BatteryDevice(unsigned int idx);
 
     virtual bool HWInfo(PWRBatteryHardware& hw) =0;
     virtual bool State(PWRBatteryStatus& stat) = 0;
@@ -63,7 +63,7 @@ public:
     /*virtual int count();
     virtual bool probe();*/
 
-    virtual ~BatteryHardware(){}
+    virtual ~BatteryDevice(){}
 
 protected:
     unsigned int Index() {return MyIndex;}

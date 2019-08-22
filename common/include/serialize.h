@@ -9,74 +9,15 @@
 
 #include "pwrdtypes.h"
 
-#include <QJsonObject>
-#include <QJsonArray>
-
-static const char* const CHARGING = "charging";
-static const char* const DISCHARGING = "discharging";
-static const char* const UNKNOWN = "unknown";
-
-typedef struct JSONSerializer
-{
-public:
-    virtual void toJSON(QJsonObject &json)=0;
-    virtual bool fromJSON(const QJsonObject &json)=0;
-    virtual QString myname()=0;
-
-    QString toJSONString();
-    virtual QJsonObject toJSON();
-
-    virtual ~JSONSerializer(){}
-
-}JSONSerializer;
-
-#define JSON_STRUCT(name)\
-    virtual QString myname(){return name;};\
-    using JSONSerializer::toJSON;   //that behavour surpise me :(
-
-template <typename T>
-void QVector2JSON(QString array_name, QVector<T> vec, QJsonObject &obj)
-{
-    QJsonArray arr;
-    for(int i=0; i< vec.size(); i++)
-    {
-        QJsonObject obj;
-        vec[i].toJSON(obj);
-        arr.append(obj);
-    }
-    obj[array_name] = arr;
-}
-
-template <typename T>
-QJsonObject QVector2JSON(QString array_name, QVector<T> vec)
-{
-    QJsonObject obj;
-    QJsonArray arr;
-    for(int i=0; i< vec.size(); i++)
-    {
-        QJsonObject obj;
-        vec[i].toJSON(obj);
-        arr.append(obj);
-    }
-    obj[array_name] = arr;
-    return obj;
-}
-
-QString QJsonObject2String(QJsonObject obj);
+#include "json_helper.h"
 
 typedef struct JSONHWInfo: public PWRHWInfo, public JSONSerializer
 {
-    JSON_STRUCT("HWInfo");
+    JSON_STRUCT("HWInfo")
     virtual void toJSON(QJsonObject &json);
     virtual bool fromJSON(const QJsonObject &json);
 }JSONHWInfo;
 
-typedef struct JSONBatteryHardware: public PWRBatteryHardware, JSONSerializer
-{
-    JSON_STRUCT("BatteryHardware");
-    virtual void toJSON(QJsonObject &json);
-    virtual bool fromJSON(const QJsonObject &json);
-}JSONBatteryHardware;
 
 typedef struct JSONBacklightHardware: public PWRBacklightHardware, JSONSerializer
 {
