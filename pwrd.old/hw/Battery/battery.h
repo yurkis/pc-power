@@ -25,7 +25,15 @@ signals:
     void ACLineStateChanged(bool isACPower);
 public slots:
 
-public:
+
+protected:
+    virtual QString JSONName(){ return "battery"; }
+    virtual QString Name()    { return "Battery"; }
+
+    virtual bool HardwareInfo(QJsonObject& obj);
+    virtual bool CurrentState(QJsonObject& obj);
+    virtual bool SetState(QJsonObject& obj);
+
 
 private:
     QVector<BatteryHardware*> batts;
@@ -33,6 +41,7 @@ private:
     bool ACState;
 
     void ParseBatteries(bool isSilent);
+
 };
 
 #endif // CBATTERYMANAGER_H
