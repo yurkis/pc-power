@@ -1,5 +1,7 @@
 #include "json_helper.h"
 
+#include <QJsonDocument>
+
 QString QJsonObject2String(QJsonObject obj)
 {
     QJsonDocument doc (obj);

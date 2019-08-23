@@ -76,13 +76,13 @@ private:
 
     QString confFile;
 
-    //! Device hardware info
+    /*//! Device hardware info
     JSONHWInfo                     hwInfo;
     //! Hardware info for all installet batteries
     QVector<JSONBatteryHardware>   battHW;
     //! Hardware info for all found backlights
     QVector<JSONBacklightHardware> backlightHW;
-
+*/
     //! True if system is on AC power
     bool onACPower;
     QVector<int> currBacklightLevels;
@@ -105,7 +105,7 @@ private:
     void readSettings(QString confFile = QString());
 
     QJsonObject parseCommand(QString line);
-
+/*
     //! GetHWInfo command handler
     QJsonObject oncmdGetHWInfo();
     QJsonObject oncmdGetBacklight();
@@ -125,7 +125,7 @@ private:
     QJsonObject oncmdUpdateProfile(QJsonObject req);
     QJsonObject oncmdRemoveProfile(QJsonObject req);
 
-
+*/
     void emitEvent(QString event_name, QJsonObject event);
     void emitBacklightChanged(int backlight, int level);
 

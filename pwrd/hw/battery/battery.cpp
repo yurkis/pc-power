@@ -17,7 +17,7 @@ bool Battery::init()
     cnt = ACPIBattery::Count();
     for(unsigned int i=0; i<cnt; i++)
     {
-        BatteryHardware* entry = new ACPIBattery(i);
+        BatteryDevice* entry = new ACPIBattery(i);
         PWRBatteryStatus state;
         if (!entry->State(state))
         {
@@ -29,7 +29,7 @@ bool Battery::init()
     cnt = FakeBattery::Count();
     for(unsigned int i=0; i<cnt; i++)
     {
-        BatteryHardware* entry = new FakeBattery(i);
+        BatteryDevice* entry = new FakeBattery(i);
         PWRBatteryStatus state;
         if (!entry->State(state))
         {
@@ -44,6 +44,26 @@ bool Battery::init()
 int Battery::Count()
 {
     return batts.size();
+}
+
+bool Battery::HardwareProbe()
+{
+    return true;
+}
+
+bool Battery::HardwareInfo(QJsonObject &obj)
+{
+    return false;
+}
+
+bool Battery::CurrentState(QJsonObject &obj)
+{
+    return false;
+}
+
+bool Battery::SetState(QJsonObject &obj)
+{
+    return false;
 }
 
 void Battery::ParseBatteries(bool isSilent)

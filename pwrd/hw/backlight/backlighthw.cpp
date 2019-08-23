@@ -1,6 +1,6 @@
 #include "backlighthw.h"
 
-BacklightHardware::BacklightHardware()
+BacklightDevice::BacklightDevice(unsigned int idx)
 {
 
 }

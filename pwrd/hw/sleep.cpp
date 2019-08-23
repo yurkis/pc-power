@@ -24,7 +24,7 @@
 
 #include "sleep.h"
 
-#include <dev/acpica/acpiio.h>
+//#include <dev/acpica/acpiio.h>
 #include <sys/ioctl.h>
 #include <fcntl.h>
 #include <stdio.h>
@@ -49,7 +49,7 @@ bool ACPISleep(QString state)
         return false;
 
 
-    bool RetVal = (0 != ioctl(acpifd, ACPIIO_REQSLPSTATE, &sleep_type));
+    bool RetVal ;// = (0 != ioctl(acpifd, ACPIIO_REQSLPSTATE, &sleep_type));
 
     close(acpifd);
 

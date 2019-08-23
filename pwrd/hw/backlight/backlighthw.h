@@ -12,16 +12,16 @@ typedef struct _PWRBacklightHardware
     }
 }PWRBacklightHardware;
 
-class BacklightHardware
+class BacklightDevice
 {
 public:
-    BacklightHardware(unsigned int idx);
+    BacklightDevice(unsigned int idx);
 
     virtual bool HWInfo(PWRBacklightHardware& hw) =0;
     virtual bool State(unsigned int level) = 0;
     virtual bool Set(unsigned int level) = 0;
 
-    virtual ~BacklightHardware(){}
+    virtual ~BacklightDevice(){}
 
 protected:
     unsigned int Index() {return MyIndex;}

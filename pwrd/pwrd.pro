@@ -17,19 +17,16 @@ SOURCES += main.cpp \
     hw/backlight/backlight.cpp \
     hw/backlight/backlighthw.cpp \
     hw/device.cpp \
+    pwrdobject.cpp \
     pwrserver.cpp \
+    settingsfile.cpp \
     sysctlutils.cpp \
-    hw/battery.cpp \
-    settingsreader.cpp \
-    hw/backlight.cpp \
     profilereader.cpp \
     ../common/src/serialize.cpp \
     ../common/src/protocol.cpp \
     hw/intel_backlight.cpp \
     hw/buttons.cpp \
-    comm_handlers.cpp \
     hw/sleep.cpp \
-    hw/fakebatt.cpp
 
 HEADERS += \
     ../common/include/hw/battery.h \
@@ -42,11 +39,11 @@ HEADERS += \
     hw/backlight/backlight.h \
     hw/backlight/backlighthw.h \
     hw/device.h \
+    pwrdobject.h \
     pwrserver.h \
+    settingsfile.h \
     sysctlutils.h \
     hw/battery.h \
-    settingsreader.h \
-    hw/backlight.h \
     profilereader.h \
     ../common/include/pwrdtypes.h \
     ../common/include/protocol.h \

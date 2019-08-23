@@ -63,7 +63,7 @@ const int CHECK_INTERVAL = 2000;
 ///////////////////////////////////////////////////////////////////////////////
 PwrServer::PwrServer(QObject *parent): QObject(parent)
 {
-    server = new QLocalServer(this);
+    /**server = new QLocalServer(this);
     connect(server, SIGNAL(newConnection()), this, SLOT(onNewConnection()));    
 
     eventServer = new QLocalServer(this);
@@ -72,7 +72,7 @@ PwrServer::PwrServer(QObject *parent): QObject(parent)
     checkStateTimer = new QTimer(this);
     QObject::connect(checkStateTimer, SIGNAL(timeout()), this, SLOT(checkState()));
 
-    isLidClosed = false;
+    isLidClosed = false;**/
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -84,7 +84,7 @@ PwrServer::~PwrServer()
 ///////////////////////////////////////////////////////////////////////////////
 void PwrServer::checkHardware()
 {
-    TRACED_FN
+    /**TRACED_FN
 
     int i=0;
 
@@ -127,13 +127,13 @@ void PwrServer::checkHardware()
 
     hwInfo.hasSleepButton = sysctlPresent(SLEEP_BUTTON_SYSCTL);
     hwInfo.hasLid = sysctlPresent(LID_SYSCTL);
-    hwInfo.possibleACPIStates = sysctl(POSSIBLE_STATES_SYSCTL).split(" ");
+    hwInfo.possibleACPIStates = sysctl(POSSIBLE_STATES_SYSCTL).split(" ");**/
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 void PwrServer::readSettings(QString confFile)
 {
-    TRACED_FN
+    /**TRACED_FN
 
     //checkHardware();
     qDebug()<<"Load settings from "<<confFile<<" ...";
@@ -197,13 +197,13 @@ void PwrServer::readSettings(QString confFile)
     if (!settings.onLowBatteryProfile.length())
     {
         settings.onLowBatteryProfile = (profiles.contains(DEF_ON_LOW_POWER_PROFILE_ID))?DEF_ON_LOW_POWER_PROFILE_ID:DEF_PROFILE_ID;
-    }
+    }**/
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 void PwrServer::emitEvent(QString event_name, QJsonObject event)
 {
-    TRACED_FN
+    /**TRACED_FN
 
     event[EVENT_EVENT_FIELD] = event_name;
 
@@ -214,7 +214,7 @@ void PwrServer::emitEvent(QString event_name, QJsonObject event)
         QTextStream* stream = it.value().stream;
         (*stream)<<json;
         stream->flush();
-    }
+    }**/
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -222,10 +222,10 @@ void PwrServer::emitBacklightChanged(int backlight, int level)
 {
     TRACED_FN
 
-    QJsonObject event;
+    /**QJsonObject event;
     event[BACKLIGHT_NUMBER]= (int)backlight;
     event[BACKLIGHT_VALUE]= level;
-    emitEvent(EVENT_BACKLIGHT_CHANGED, event);
+    emitEvent(EVENT_BACKLIGHT_CHANGED, event);**/
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -233,16 +233,16 @@ PWRProfileReader PwrServer::findProfile(QString id)
 {
     TRACED_FN
 
-    PWRProfileReader ret = PWRProfileReader();
+    /**PWRProfileReader ret = PWRProfileReader();
     if (profiles.contains(id))
         ret = profiles[id];
-    return ret;
+    return ret;**/
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 void PwrServer::applyProfile(QString id)
 {
-    TRACED_FN
+    /**TRACED_FN
 
     PWRProfileReader p = findProfile(id);
     currProfile = p;
@@ -267,13 +267,13 @@ void PwrServer::applyProfile(QString id)
         {
             ACPISleep(p.lidSwitchSate);
         }
-    }
+    }**/
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 void PwrServer::checkBacklights()
 {
-    TRACED_FN
+    /**TRACED_FN
 
     int level=0;
     if (!settings.usingIntel_backlight)
@@ -300,13 +300,13 @@ void PwrServer::checkBacklights()
             currBacklightLevels[0] = level;
             emitBacklightChanged(0, level);
         }
-    }
+    }**/
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 void PwrServer::checkBatts(bool* hasLowBattery)
 {
-    TRACED_FN
+    /**TRACED_FN
 
     if (hasLowBattery) (*hasLowBattery) = false;
     for(int i=0; i<battHW.size(); i++)
@@ -337,13 +337,13 @@ void PwrServer::checkBatts(bool* hasLowBattery)
             if (currBatteryStates.size() > i)
                 currBatteryStates[i] = curr;
         }//if got battery status
-    }//for all batteries
+    }//for all batteries**/
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 void PwrServer::checkButtons()
 {
-    TRACED_FN
+    /**TRACED_FN
 
     QString state;
     bool shouldEmitEvent=false;
@@ -366,57 +366,57 @@ void PwrServer::checkButtons()
         event[BTN_SLEEP_STATE]= currSleepBtnState;
         event[LID_SWITCH_SATE]= currLidSwitchState;
         emitEvent(EVENT_BUTTONS_STATE_CHANGED, event);
-    }
+    }**/
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 int PwrServer::blGlobalLevel()
 {
-    TRACED_FN
+    /**TRACED_FN
 
     if (settings.usingIntel_backlight)
         return IBLBacklightLevel();
     if (backlightHW.size())
         return backlightLevel(0);
-    return 100;
+    return 100;**/
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 void PwrServer::setblGlobalLevel(int value)
 {
-    TRACED_FN
+    /**TRACED_FN
 
     //TODO: emit events here
     if (settings.usingIntel_backlight)
        setIBLBacklightLevel(value);
     else
         for (int i=0; i<backlightHW.size(); i++)
-            setBacklightLevel(i, value);
+            setBacklightLevel(i, value);**/
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 #ifndef FAKE_BATT
 bool PwrServer::isOnACPower()
 {
-    return sysctlAsInt(ACLINE_SYSCTL) == 1;
+    /** return sysctlAsInt(ACLINE_SYSCTL) == 1; **/
 }
 #endif
 ///////////////////////////////////////////////////////////////////////////////
 void PwrServer::onSuspend()
 {
-    TRACED_FN
+    /**TRACED_FN
 
     qDebug()<<"Preparing to suspend...";
     if (settings.usingIntel_backlight)
     {
         savedBacklight = IBLBacklightLevel();
-    }
+    }**/
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 void PwrServer::onResume()
 {
-    TRACED_FN
+    /** TRACED_FN
 
     qDebug()<<"Performing resume...";
     if (settings.usingIntel_backlight)
@@ -424,13 +424,13 @@ void PwrServer::onResume()
         setIBLBacklightLevel(savedBacklight);
     }
     isLidClosed = false;
-    checkState();
+    checkState(); **/
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 bool PwrServer::start(QStringList args)
 {
-    TRACED_FN
+/**    TRACED_FN
 
     Q_UNUSED(args)
 
@@ -515,12 +515,13 @@ bool PwrServer::start(QStringList args)
     checkStateTimer->start();
 
     return true;
+    **/
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 void PwrServer::stop()
 {
-    TRACED_FN
+    /** TRACED_FN
 
     if(server->isListening())
     {
@@ -528,7 +529,7 @@ void PwrServer::stop()
     }
     QLocalServer::removeServer(settings.pipeName); //clean up
 
-    QCoreApplication::exit(0);
+    QCoreApplication::exit(0); **/
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -549,7 +550,7 @@ void PwrServer::signalHandler(int sig)
 ///////////////////////////////////////////////////////////////////////////////
 void PwrServer::onDEVDEvent()
 {
-    TRACED_FN
+/**    TRACED_FN
 
     QTextStream* devdStream = new QTextStream(&devdSocket);
 
@@ -578,13 +579,13 @@ void PwrServer::onDEVDEvent()
         {
             isLidClosed = (ev[3].trimmed() == "notify=0x00")?true:false;
         }
-    }
+    } **/
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 void PwrServer::onNewConnection()
 {
-    TRACED_FN
+/**    TRACED_FN
 
     qDebug()<<"New control pipe connection";
 
@@ -604,13 +605,13 @@ void PwrServer::onNewConnection()
     connect(conn.sock, SIGNAL(disconnected()), this, SLOT(onDisconnect()) );
 
     conn.stream = new QTextStream(conn.sock);
-    connections[conn.sock]= conn;
+    connections[conn.sock]= conn; **/
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 void PwrServer::onDisconnect()
 {
-    TRACED_FN
+/**    TRACED_FN
 
     qDebug()<<"Disconnect from control pipe";
 
@@ -630,13 +631,13 @@ void PwrServer::onDisconnect()
     {
         delete connections[sender].stream;
         connections.remove(sender);
-    }
+    } **/
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 void PwrServer::onEventNewConnection()
 {
-    TRACED_FN
+/**    TRACED_FN
 
     qDebug()<<"New event listener connection";
 
@@ -655,13 +656,13 @@ void PwrServer::onEventNewConnection()
     conn.stream = new QTextStream(conn.sock);
     eventConnections[conn.sock]= conn;
 
-    connect(conn.sock, SIGNAL(disconnected()), this, SLOT(onEventDisconnect()) );
+    connect(conn.sock, SIGNAL(disconnected()), this, SLOT(onEventDisconnect()) ); **/
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 void PwrServer::onEventDisconnect()
 {
-    TRACED_FN
+/**    TRACED_FN
 
     qDebug()<<"Event listener disconnect";
 
@@ -681,13 +682,13 @@ void PwrServer::onEventDisconnect()
     {
         delete eventConnections[sender].stream;
         eventConnections.remove(sender);
-    }
+    } **/
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 void PwrServer::onRequest()
 {
-    TRACED_FN
+/**    TRACED_FN
 
     //qDebug()<<"---------- onRequest";
 
@@ -714,12 +715,13 @@ void PwrServer::onRequest()
         (*connections[sender].stream)<<jsontext<<"\n";
         connections[sender].stream->flush();
     }
+    **/
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 void PwrServer::checkState(bool force)
 {    
-    TRACED_FN
+/**    TRACED_FN
 
     bool currLowBatt;
     static bool wasLowBatt = false;
@@ -797,6 +799,6 @@ void PwrServer::checkState(bool force)
         qDebug()<<"Profile changed to "<<profileName;
         applyProfile(profileName);
     }
-    onACPower = currPower;
+    onACPower = currPower; */
 }
 

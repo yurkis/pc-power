@@ -30,6 +30,7 @@ protected:
     virtual QString JSONName(){ return "battery"; }
     virtual QString Name()    { return "Battery"; }
 
+    virtual bool HardwareProbe();
     virtual bool HardwareInfo(QJsonObject& obj);
     virtual bool CurrentState(QJsonObject& obj);
     virtual bool SetState(QJsonObject& obj);

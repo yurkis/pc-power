@@ -22,12 +22,16 @@
 *   OTHER DEALINGS IN THE SOFTWARE.                                       *
 ***************************************************************************/
 
+#ifndef FAKE_HARDWARE
+
 #include "sysctlutils.h"
 
 #include <sys/types.h>
 #include <sys/sysctl.h>
 
 #include <QDebug>
+
+
 
 ////////////////////// from libPCBSD  ///////////////////////////////////////
 QString sysctl(QString sysctl)
@@ -100,3 +104,42 @@ bool sysctlPresent(QString sysctlName)
     }
     return true;
 }
+#else
+#include <QString>
+////////////////////// from libPCBSD  ///////////////////////////////////////
+QString sysctl(QString sysctl)
+{
+    Q_UNUSED(sysctl);
+    return QString("NOT IMPLEMENTED");
+}
+
+/////////////////////// from libPCBSD /////////////////////////////////////////
+long long sysctlAsInt(QString sysctl)
+{
+   Q_UNUSED(sysctl);
+   return 0;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+bool setSysctl(QString sysctlName, QString value)
+{
+    Q_UNUSED(sysctlName);
+    Q_UNUSED(value);
+    return false;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+bool setSysctl(QString sysctlName, long long value)
+{
+    Q_UNUSED(sysctlName);
+    Q_UNUSED(value);
+    return false;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+bool sysctlPresent(QString sysctlName)
+{
+    Q_UNUSED(sysctlName);
+    return false;
+}
+#endif
